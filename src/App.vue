@@ -2,28 +2,35 @@
 <script setup>
 import { computed } from 'vue'
 import { AppState } from './AppState.js'
+import { energyService } from "./services/EnergyService.js";
 
+const energy = computed(() => AppState.energy)
 
+function gatherEnergy() {
+  energyService.gatherEnergy()
+}
 </script>
 
 
 // HTML
 <template>
   <main>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row justify-content-center">
         <div class="col-3 text-center">
-          <h1 class="text">Moon Miner</h1>
-        </div>
-      </div>
-      <div class="row justify-content-center energy-button">
-        <div class="col-2 align-self-center">
-          <button class="btn btn-warning">Collect Energy</button>
+          <h1>Moon Miner</h1>
         </div>
       </div>
       <div class="row">
+        <div id="galaxy" class="col-8 d-flex justify-content-center">
+          <div class="align-self-center">
+            <button @click="gatherEnergy()" class="btn btn-warning rounded-pill">Collect Energy</button>
+          </div>
+        </div>
         <div class="col-4">
-          <h3 class="text">⚡: 0</h3>
+          <div  class="text-center">
+            <h3>⚡: {{ energy }}</h3>
+          </div>
         </div>
       </div>
     </div>
@@ -35,18 +42,12 @@ import { AppState } from './AppState.js'
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-main {
+#galaxy{
   background-image: url(/src/assets/img/Galaxy-Oil-Painting.png);
   background-size: cover;
   background-position: center;
+  height: 60vh;
+  aspect-ratio: 1;
 }
 
-.text {
-  color: whitesmoke;
-  filter: drop-shadow(0 0 0.33em black);
-}
-
-.energy-button {
-  height: 80vh;
-}
 </style>
