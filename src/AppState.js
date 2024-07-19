@@ -7,5 +7,14 @@ export const AppState = reactive({
   /** @type {import('./models/Account.js').Account} user info from the database*/
   account: null,
 
-  energy: 0
+  energy: 0,
+
+  clickUpgrades: [
+    {
+      name: 'drill',
+      clickModifier: 100,
+      price: 10,
+      quantity: 0
+    },
+  ]
 })
