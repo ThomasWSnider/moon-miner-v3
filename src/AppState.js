@@ -12,7 +12,7 @@ export const AppState = reactive({
   clickUpgrades: [
     {
       name: 'drill',
-      clickModifier: 100,
+      clickModifier: 1,
       price: 10,
       quantity: 0
     },

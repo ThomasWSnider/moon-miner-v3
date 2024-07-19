@@ -16,7 +16,15 @@ class EnergyService {
   }
 
   gatherEnergy() {
-    AppState.energy++
+    let clickAmount = 1
+    AppState.clickUpgrades.forEach((clickUpgrade) => {
+      if (clickUpgrade.quantity > 0) {
+        for (let i = 0; i < clickUpgrade.quantity; i++) {
+          clickAmount += clickUpgrade.clickModifier
+        }
+      }
+      AppState.energy += clickAmount
+    })
   }
 
 }
